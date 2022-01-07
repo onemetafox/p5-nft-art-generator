@@ -8,9 +8,12 @@ const BLACK_BACKGROUND_HSB_RADIO_VALUE = 2;
 const WHITE_BACKGROUND_RGB_RADIO_VALUE = 3;
 const WHITE_BACKGROUND_HSB_RADIO_VALUE = 4;
 
+var ww = window.innerWidth;
+var hh = window.innerHeight;
+
 // The perlin noise flow field object
 var perlinNoiseFlowField;
-
+var nn=0;
 
 let canvas
 let logo
@@ -23,6 +26,19 @@ const backgrounds = [0,255]
 let pentagon1;
 let pentagon2;
 
+var left_x;
+var right_x;
+var top_y;
+var bottom_y;
+var resolution;
+var num_columns;
+var num_rows;
+var grid;
+var default_angle;
+const num_steps = 100
+const step_length = 8
+
+var pp = [[300, -300], [300, -100], [300, 100], [300, 300], [300, 500]];
 
 function createStretchedPentagon(stretchFactor, offset) {
   
@@ -117,7 +133,7 @@ function setup() {
   drawCustomShape(createStretchedPentagon(0, random(-400,400)), [random(0,255), random(0,255), random(0,255), 10])
   */
   
-
+  
   // Set the angle mode to radians
   angleMode(RADIANS)
   // Create perlin noise flow field
@@ -128,23 +144,53 @@ function setup() {
     DEFAULT_VECTOR_MAGNITUDE,
     DEFAULT_NOISE_SCALE,
     DEFAULT_STROKE_WEIGHT);
-
-  noStroke()
-  //canvas = createCanvas(windowWidth, windowHeight)
-  canvas = createCanvas(window.innerWidth, window.innerHeight)
-  background(192)
   
-  drawCustomShape(createStretchedPentagon(300, -300), [random(0,255), random(0,255), random(0,255), 10])
-  drawCustomShape(createStretchedPentagon(300, -100), [random(0,255), random(0,255), random(0,255), 10])
-  drawCustomShape(createStretchedPentagon(300, 100), [random(0,255), random(0,255), random(0,255), 10])
-  drawCustomShape(createStretchedPentagon(300, 300), [random(0,255), random(0,255), random(0,255), 10])
-  drawCustomShape(createStretchedPentagon(300, 500), [random(0,255), random(0,255), random(0,255), 10])
-  //frameRate(0.1)
+  /*
+  left_x = Math.round(ww * -0.5)
+  right_x = Math.round(ww * 1.5)
+  top_y = Math.round(hh * -0.5)
+  bottom_y = Math.round(hh * 1.5) 
+  resolution = Math.round(ww * 0.01) 
+  num_columns = Math.round((right_x - left_x) / resolution)
+  num_rows = Math.round((bottom_y - top_y) / resolution)
+  
+  grid = new Array(num_columns)
+  for (var i=0; i<num_columns; i++)
+    grid[i] = new Array(num_rows)
+  default_angle = Math.PI * 0.25
+  for (var column=0; column<num_columns; column++) {
+    for (var row=0; row<num_rows; row++) {
+      //angle = (row / parseFloat(num_rows)) * Math.PI
+      // Processing's noise() works best when the step between
+      // points is approximately 0.005, so scale down to that
+      var scaled_x = parseFloat(column) * 0.005
+      var scaled_y = parseFloat(row) * 0.005
+      // get our noise value, between 0.0 and 1.0
+      var noise_val = noise(scaled_x, scaled_y)
+      // translate the noise value to an angle (betwen 0 and 2 * PI)
+      angle = map(noise_val, 0.0, 1.0, 0.0, Math.PI * 2.0)
+      grid[column][row] = angle
+    }
+  }
+  */
 }
 
 function draw() {
-  perlinNoiseFlowField.Update();
-  perlinNoiseFlowField.Draw();
+  noStroke()
+  //canvas = createCanvas(windowWidth, windowHeight)
+  canvas = createCanvas(window.innerWidth, window.innerHeight)
+  //canvas.mouseClicked(clickOnSave)
+  background(random(0,255))
+  
+  for (var i=0; i<5; i++) {
+    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,255), random(0,255), random(0,255), 10])
+    for (nn=0; nn<200; nn++) {
+      perlinNoiseFlowField.Update();
+      perlinNoiseFlowField.Draw();
+    }
+  }
+  
+  //frameRate(0.1)
 }
 
 function drawCustomShape(shapeArchetype, color) {
@@ -218,4 +264,8 @@ function polygon(currentShape, dep) {
     return polygon(nextShape, dep + 1)
 
   }
+}
+
+function clickOnSave() {
+  saveCanvas();
 }
