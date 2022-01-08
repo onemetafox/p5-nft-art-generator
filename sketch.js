@@ -177,7 +177,7 @@ function setup() {
 
 function draw() {
   noStroke()
-  //canvas = createCanvas(windowWidth, windowHeight)
+  canvas = createCanvas(540, 720)
   canvas = createCanvas(window.innerWidth, window.innerHeight)
   //canvas.mouseClicked(clickOnSave)
   background(random(0,255))
