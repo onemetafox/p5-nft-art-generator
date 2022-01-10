@@ -180,17 +180,19 @@ function draw() {
   canvas = createCanvas(540, 720)
   canvas = createCanvas(window.innerWidth, window.innerHeight)
   //canvas.mouseClicked(clickOnSave)
-  background(random(0,255))
-  
+  // background(random(0,255))
+  background(0)
+  perlinNoiseFlowField.Update();
+  perlinNoiseFlowField.Draw();
   for (var i=0; i<5; i++) {
     drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,255), random(0,255), random(0,255), 10])
-    for (nn=0; nn<200; nn++) {
-      perlinNoiseFlowField.Update();
-      perlinNoiseFlowField.Draw();
-    }
+    // for (nn=0; nn<10; nn++) {
+      // perlinNoiseFlowField.Update();
+      // perlinNoiseFlowField.Draw();
+    // }
   }
   
-  //frameRate(0.1)
+  frameRate(30)
 }
 
 function drawCustomShape(shapeArchetype, color) {

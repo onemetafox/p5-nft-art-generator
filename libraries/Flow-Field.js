@@ -1,14 +1,14 @@
 // Constants to define default properties of the perlin noise flow field
 const DEFAULT_ALPHA = 10;
-const DEFAULT_VECTOR_FIELD_OFFSET = 1;
+const DEFAULT_VECTOR_FIELD_OFFSET = 30;
 const DEFAULT_NUM_PARTICLES = 100;
-const DEFAULT_VECTOR_MAGNITUDE = 1;
+const DEFAULT_VECTOR_MAGNITUDE = 10;
 const DEFAULT_NOISE_SCALE = 1;
-const DEFAULT_VECTOR_FIELD_SIZE = 50;
-const DEFAULT_STROKE_WEIGHT = 10;
+const DEFAULT_VECTOR_FIELD_SIZE = 100;
+const DEFAULT_STROKE_WEIGHT = 100;
 const WHITE = 255;
 const BLACK = 0;
-const HSB_RANGE = 100;
+const HSB_RANGE = 200;
 
 class FlowField
 {
