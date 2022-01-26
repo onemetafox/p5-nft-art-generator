@@ -123,12 +123,12 @@ function setup() {
   for (var i=0; i<num_columns; i++)
     grid[i] = new Array(num_rows);
   
-  background(random(0, 150), random(0, 150), random(0, 150), 50);
+  background(random(50, 150));
   
   for (var i=0; i<5; i++) {
-    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,255), random(0,255), random(0,255), 10])
+    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150) * random(0,1), random(0,150), random(0,150), 10])
   }
-  
+  filter(BLUR, 3);
   beginShape();
   for (var column=0; column<num_columns; column++) {
     for (var row=0; row<num_rows; row++) {
@@ -140,12 +140,14 @@ function setup() {
       // get our noise value, between 0.0 and 1.0
       var noise_val = noise(scaled_x, scaled_y)
       // translate the noise value to an angle (betwen 0 and 2 * PI)
-      angle = map(noise_val, 0.0, 1.0, 0.0, TWO_PI) + radians(225);
+      angle = map(noise_val, 0.0, 1.0, 0.0, TWO_PI) + radians(100);
       grid[column][row] = angle
     }
   }
-  var ec = color(255, 255, 255);
-  ec.setAlpha(3);
+  // var ec = color(random(70,200) * random(0,1), random(0,250), random(0,250));
+  var ec = color(255,255,255);
+
+  ec.setAlpha(1);
   fill(ec);
   for (var i = 0; i < 20; i++) {
     var x = random(0, ww / 2);
