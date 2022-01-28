@@ -1,8 +1,8 @@
 // var ww = window.innerWidth;
 // var hh = window.innerHeight;
 
-var ww = 1500;
-var hh = 700;
+var ww = 800;
+var hh = 960;
 
 let canvas
 const st_deviation = 50
@@ -19,6 +19,8 @@ var resolution;
 var num_columns;
 var num_rows;
 var grid;
+
+let img;
 
 const num_steps = 200;
 const step_length = 5;
@@ -37,45 +39,6 @@ function createStretchedPentagon(stretchFactor, offset) {
       createVector(640 + randomGaussian(0, stretchFactor)+ offset , 50+ offset ),
       createVector(830.9188309203678 + randomGaussian(0, stretchFactor)+ offset , 129.08116907963213+ offset )
   ]
-  
-  /*
-  let stretchedPentagon = [
-    createVector(910 + stretchFactor , 320+ offset ),
-    createVector(830.9188309203678 + stretchFactor , 510.9188309203678+ offset ),
-    createVector(640 + stretchFactor , 590+ offset ),
-    createVector(449.0811690796322 + stretchFactor , 510.91883092036784+ offset ),
-    createVector(370 + stretchFactor ,320.00000000000006+ offset ),
-    createVector(449.0811690796321 + stretchFactor , 129.0811690796322+ offset ),
-    createVector(640 + stretchFactor , 50+ offset ),
-    createVector(830.9188309203678 + stretchFactor , 129.08116907963213+ offset )
-  ]
-  */
-  
-  /*
-  let stretchedPentagon = [
-    createVector(910 + randomGaussian(0, stretchFactor) , 320+ offset ),
-    createVector(830.9188309203678 + randomGaussian(0, stretchFactor) , 510.9188309203678+ offset ),
-    createVector(640 + randomGaussian(0, stretchFactor) , 590+ offset ),
-    createVector(449.0811690796322 + randomGaussian(0, stretchFactor) , 510.91883092036784+ offset ),
-    createVector(370 + randomGaussian(0, stretchFactor) ,320.00000000000006+ offset ),
-    createVector(449.0811690796321 + randomGaussian(0, stretchFactor) , 129.0811690796322+ offset ),
-    createVector(640 + randomGaussian(0, stretchFactor) , 50+ offset ),
-    createVector(830.9188309203678 + randomGaussian(0, stretchFactor) , 129.08116907963213+ offset )
-  ]
-  */
-  
-  /*
-  let stretchedPentagon = [
-    createVector(910 + randomGaussian(0, stretchFactor) + stretchFactor , 320+ offset ),
-    createVector(830.9188309203678 + randomGaussian(0, stretchFactor) + stretchFactor , 510.9188309203678+ offset ),
-    createVector(640 + randomGaussian(0, stretchFactor) + stretchFactor , 590+ offset ),
-    createVector(449.0811690796322 + randomGaussian(0, stretchFactor) + stretchFactor , 510.91883092036784+ offset ),
-    createVector(370 + randomGaussian(0, stretchFactor) + stretchFactor ,320.00000000000006+ offset ),
-    createVector(449.0811690796321 + randomGaussian(0, stretchFactor) + stretchFactor , 129.0811690796322+ offset ),
-    createVector(640 + randomGaussian(0, stretchFactor) + stretchFactor , 50+ offset ),
-    createVector(830.9188309203678 + randomGaussian(0, stretchFactor) + stretchFactor , 129.08116907963213+ offset )
-  ]*/
-
   return stretchedPentagon
 }
 
@@ -84,7 +47,6 @@ function preload() {
 }
 
 function setup() {
-  
   pentagon1 = [
       createVector(910, 320),
       createVector(830.9188309203678, 510.9188309203678),
@@ -123,7 +85,7 @@ function setup() {
   for (var i=0; i<num_columns; i++)
     grid[i] = new Array(num_rows);
   
-  background(random(50, 150));
+  background(191, 185, 185);
   
   for (var i=0; i<5; i++) {
     drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150) * random(0,1), random(0,150), random(0,150), 10])
@@ -165,7 +127,8 @@ function setup() {
 }
 
 function draw() {
-  
+  tint(255, 127); // Display at half opacity
+  image(img, 0, 0);
 }
 
 function myFlowField(x, y, num_steps){
