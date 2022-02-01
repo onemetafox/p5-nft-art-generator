@@ -1,8 +1,8 @@
 // var ww = window.innerWidth;
 // var hh = window.innerHeight;
 
-var ww = 800;
-var hh = 960;
+var ww = 600;
+var hh = 720;
 
 let canvas
 const st_deviation = 50
@@ -19,8 +19,9 @@ var resolution;
 var num_columns;
 var num_rows;
 var grid;
-
+var offset;
 let img;
+let easing = 0.05;
 
 const num_steps = 200;
 const step_length = 5;
@@ -43,10 +44,11 @@ function createStretchedPentagon(stretchFactor, offset) {
 }
 
 function preload() {
-  
+  img =loadImage('assets/bitmap.png');
 }
 
 function setup() {
+  
   pentagon1 = [
       createVector(910, 320),
       createVector(830.9188309203678, 510.9188309203678),
@@ -85,7 +87,9 @@ function setup() {
   for (var i=0; i<num_columns; i++)
     grid[i] = new Array(num_rows);
   
-  background(191, 185, 185);
+  // background(191, 185, 185);
+  // background(random(0,150) * random(0,1), random(0,150), random(0,150));
+  background(255);
   
   for (var i=0; i<5; i++) {
     drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150) * random(0,1), random(0,150), random(0,150), 10])
@@ -121,14 +125,24 @@ function setup() {
     var y = random(0, hh / 2);
     myFlowField(x, y, num_steps) ;
   }
+
   endShape();
+ 
+  // image(img, 0, 0);
+  tint(255, 180); // Apply transparency without changing color
+  image(img, 0, 0);
+  let borderColor = color(191, 185, 185);
+  fill(borderColor);
+  rect(0, 0, 12, 720);
+  rect(0, 0, 600, 12);
+  rect(0, 708, 600, 720);
+  rect(588, 0, 600, 720);
 
   //frameRate(0.1)
 }
 
 function draw() {
-  tint(255, 127); // Display at half opacity
-  image(img, 0, 0);
+ 
 }
 
 function myFlowField(x, y, num_steps){
