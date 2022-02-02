@@ -129,20 +129,27 @@ function setup() {
   endShape();
  
   // image(img, 0, 0);
-  tint(255, 180); // Apply transparency without changing color
-  image(img, 0, 0);
+  
+  tint(255, 100); // Apply transparency without changing color
+  translate(ww / 2, hh / 2);
+  rotate(PI / 180 * random(0,360));
+  imageMode(CENTER);
+  // image(img, 0, 0, 150, 150);
+  image(img, 0, 0, ww*2, hh*1.25);
+  
+
+  //frameRate(0.1)
+}
+
+function draw() {
+  // background(127);
+  noStroke();
   let borderColor = color(191, 185, 185);
   fill(borderColor);
   rect(0, 0, 12, 720);
   rect(0, 0, 600, 12);
   rect(0, 708, 600, 720);
   rect(588, 0, 600, 720);
-
-  //frameRate(0.1)
-}
-
-function draw() {
- 
 }
 
 function myFlowField(x, y, num_steps){
