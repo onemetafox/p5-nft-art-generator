@@ -44,11 +44,8 @@ function createStretchedPentagon(stretchFactor, offset) {
 }
 
 function preload() {
-  if( random([1,2]) == 1){
-    img =loadImage('assets/bitmap.png');
-  }else{
-    img =loadImage('assets/bitmap1.png');
-  }
+  console.log('assets/bitmap'+random([1,2,3,4])+'.png');
+  img =loadImage('assets/bitmap'+random([1,2,3,4])+'.png');
   
 }
 
