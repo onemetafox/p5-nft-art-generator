@@ -137,7 +137,7 @@ function setup() {
   rotate(PI / 180 * random(0,360));
   imageMode(CENTER);
   // image(img, 0, 0, 150, 150);
-  image(img, 0, 0, ww*2, hh*1.25);
+  image(img, 0, 0, ww*1.5, hh*1.25);
   
 
   //frameRate(0.1)
