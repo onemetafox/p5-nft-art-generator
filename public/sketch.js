@@ -130,7 +130,7 @@ function setup() {
  
   // image(img, 0, 0);
   
-  tint(255, 150); // Apply transparency without changing color
+  tint(255, 185); // Apply transparency without changing color
   translate(ww / 2, hh / 2);
   rotate(PI / 180 * random(0,360));
   imageMode(CENTER);
