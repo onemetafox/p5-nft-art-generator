@@ -1,8 +1,8 @@
 // var ww = window.innerWidth;
 // var hh = window.innerHeight;
 
-var ww = 600;
-var hh = 720;
+var ww = 700;
+var hh = 840;
 
 let canvas
 const st_deviation = 50
@@ -44,7 +44,12 @@ function createStretchedPentagon(stretchFactor, offset) {
 }
 
 function preload() {
-  img =loadImage('assets/bitmap.png');
+  if( random([1,2]) == 1){
+    img =loadImage('assets/bitmap.png');
+  }else{
+    img =loadImage('assets/bitmap1.png');
+  }
+  
 }
 
 function setup() {
@@ -92,7 +97,7 @@ function setup() {
   background(255);
   
   for (var i=0; i<5; i++) {
-    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150) * random(0,1), random(0,150), random(0,150), 10])
+    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150), random(0,150), random(0,150), 10])
   }
   filter(BLUR, 3);
   beginShape();
@@ -146,10 +151,10 @@ function draw() {
   noStroke();
   let borderColor = color(191, 185, 185);
   fill(borderColor);
-  rect(0, 0, 12, 720);
-  rect(0, 0, 600, 12);
-  rect(0, 708, 600, 720);
-  rect(588, 0, 600, 720);
+  rect(0, 0, 12, hh);
+  rect(0, 0, ww, 12);
+  rect(0, hh-12, ww, hh);
+  rect(ww-12, 0, ww, hh);
 }
 
 function myFlowField(x, y, num_steps){
