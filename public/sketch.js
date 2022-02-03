@@ -1,5 +1,21 @@
 // var ww = window.innerWidth;
 // var hh = window.innerHeight;
+function genTokenData(projectNum) {
+  let data = {};
+  let hash = "0x";
+  for (var i = 0; i < 64; i++) {
+    hash += Math.floor(Math.random() * 16).toString(16);
+  }
+  data.hash = hash;
+  data.tokenId = (projectNum * 1000000 + mintNumber +1).toString();
+  return data;
+}
+let tokenData = genTokenData(787);
+let projectNumber = Math.floor(parseInt(tokenData.tokenId) / 1000000)
+let mintNumber = parseInt(tokenData.tokenId) % 1000000
+
+console.log(projectNumber);
+console.log(mintNumber);
 
 var ww = 700;
 var hh = 840;
