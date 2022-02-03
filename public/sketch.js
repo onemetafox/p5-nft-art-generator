@@ -128,7 +128,7 @@ function setup() {
   }
 
   endShape();
- 
+  tint(255,180);
   translate(ww / 2, hh / 2);
   rotate(PI / 180 * random(0,360));
   imageMode(CENTER);
