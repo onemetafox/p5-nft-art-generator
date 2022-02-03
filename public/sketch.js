@@ -44,8 +44,7 @@ function createStretchedPentagon(stretchFactor, offset) {
 }
 
 function preload() {
-  console.log('assets/bitmap'+random([1,2,3,4])+'.png');
-  img =loadImage('assets/bitmap'+random([1,2,3,4])+'.png');
+  img =loadImage('assets/bitmap'+random([1,2,3,4,5])+'.png');
   
 }
 
@@ -117,12 +116,12 @@ function setup() {
 
   ec.setAlpha(1);
   fill(ec);
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 10; i++) {
     var x = random(0, ww / 2);
     var y = random(0, hh / 2);
     myFlowField(x, y, num_steps) ;
   }
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 10; i++) {
     var x = random(ww / 2, ww);
     var y = random(0, hh / 2);
     myFlowField(x, y, num_steps) ;
@@ -130,13 +129,9 @@ function setup() {
 
   endShape();
  
-  // image(img, 0, 0);
-  
-  tint(255, 185); // Apply transparency without changing color
   translate(ww / 2, hh / 2);
   rotate(PI / 180 * random(0,360));
   imageMode(CENTER);
-  // image(img, 0, 0, 150, 150);
   image(img, 0, 0, ww*1.5, hh*1.25);
   
 
