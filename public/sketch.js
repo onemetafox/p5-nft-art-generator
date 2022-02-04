@@ -16,9 +16,15 @@ var grid;
 var offset;
 let img;
 let easing = 0.05;
-
 const num_steps = 200;
 const step_length = 5;
+let angoff = 0.0;
+let shapecolor;
+let pentagon = [];
+let x1 = [];
+let y1 = [];
+let x2 = [];
+let y2 = [];
 
 var pp = [[300, -300], [300, -100], [300, 100], [300, 300], [300, 500]];
 
@@ -39,11 +45,8 @@ function createStretchedPentagon(stretchFactor, offset) {
 
 function preload() {
   img =loadImage('assets/bitmap'+random([1,2,3,4,5])+'.png');
-}
+  angoff = PI / 180 * random(0,360);
 
-function setup() {
-  noStroke();
-  canvas = createCanvas(ww, hh);
   left_x = Math.round(ww * -0.5);
   right_x = Math.round(ww * 1.5);
   top_y = Math.round(hh * -0.5);
@@ -56,10 +59,30 @@ function setup() {
   for (var i=0; i<num_columns; i++)
     grid[i] = new Array(num_rows);
 
-  background(255);
-  
+  shapecolor = [random(0,150), random(0,150), random(0,150), 10];
+  pentagon = [];
   for (var i=0; i<5; i++) {
-    drawCustomShape(createStretchedPentagon(pp[i][0], pp[i][1]), [random(0,150), random(0,150), random(0,150), 10]);
+    pentagon.push(createStretchedPentagon(pp[i][0], pp[i][1]));
+  }
+  x1 = [];
+  y1 = [];
+  x2 = [];
+  y2 = [];
+  for (var i = 0; i < 10; i++) {
+    x1.push(random(0, ww / 2));
+    y1.push(random(0, hh / 2));
+    x2.push(random(ww / 2, ww));
+    y2.push(random(0, hh / 2));
+  }
+    
+}
+
+function setup() {
+  noStroke();
+  canvas = createCanvas(ww, hh);
+  background(255);
+  for (var i=0; i<5; i++) {
+    drawCustomShape(pentagon[i], shapecolor);
   }
   filter(BLUR, 3);
 
@@ -77,27 +100,23 @@ function setup() {
   ec.setAlpha(1);
   fill(ec);
   for (var i = 0; i < 10; i++) {
-    var x = random(0, ww / 2);
-    var y = random(0, hh / 2);
-    myFlowField(x, y, num_steps);
+    myFlowField(x1[i], y1[i], num_steps);
   }
   for (var i = 0; i < 10; i++) {
-    var x = random(ww / 2, ww);
-    var y = random(0, hh / 2);
-    myFlowField(x, y, num_steps);
+    myFlowField(x2[i], y2[i], num_steps);
   }
   endShape();
 
-  tint(255,180);
+  tint(255,150);
   translate(ww / 2, hh / 2);
-  rotate(PI / 180 * random(0,360));
+  rotate(angoff);
   imageMode(CENTER);
   image(img, 0, 0, ww*1.5, hh*1.25);
   
   //frameRate(0.1);
 }
 
-function draw() {
+function draw() {  
   noStroke();
   let borderColor = color(191, 185, 185);
   fill(borderColor);
@@ -237,14 +256,13 @@ tokenData = {
 
 function windowResized() {
   hh = window.innerHeight;
-  if (hh > shh)
-    hh = shh;
   ww = hh*ratio;
   const dim = Math.min(ww, hh);
   M = dim / defaultSize;
   console.log(`M: ${M}`);
   R.reset();
   resizeCanvas(ww, hh);
+  setup();
 }
 
 const defaultSize = 1000;
@@ -253,8 +271,8 @@ let hh = shh;
 let ww = sww;
 let dim = Math.min(ww, hh);
 let M = dim / defaultSize;
-// console.log(`M: ${M}`);
-// console.log(`Hash: ${tokenData.hash}`);
+console.log(`M: ${M}`);
+console.log(`Hash: ${tokenData.hash}`);
 const seed = parseInt(tokenData.hash.slice(0, 16), 16);
-// console.log(`Seed: ${seed}`);
+console.log(`Seed: ${seed}`);
 const R = new Random(seed);
