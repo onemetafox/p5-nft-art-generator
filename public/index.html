@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script></head><body></body><script type="text/javascript">
 let tokenData = {
-    hash: "0x11ac16678959949c12d5410212301960fc496813cbc3495bf77aeed738579738",
+    hash: "0x11ac16678959949c12d5410212301960fc496813cbd3495bf77aeed738579738",
     tokenId: "123000456"
 }
 let hash = tokenData.hash,
@@ -109,10 +109,37 @@ function setup() {
     var r = color(255, 255, 255);
     for (r.setAlpha(2), fill(r), n = 0; n < 10; n++) myFlowField(x1[n], y1[n], num_steps);
     for (n = 0; n < 10; n++) myFlowField(x2[n], y2[n], num_steps);
+    if(R.random_int(0,1) == 1){
+        img.loadPixels();
+        // Loop through the pixels X and Y
+        for (let y = 0; y < img.height; y++) {
+          for (let x = 0; x < img.width; x++) {
+
+            // Calculate the pixel index
+            const index = (y * img.width + x) * 4;
+
+            // Get the red, green, and blue values
+            const r = img.pixels[index + 0];
+            const g = img.pixels[index + 1];
+            const b = img.pixels[index + 2];
+            
+            // Invert the colors
+            img.pixels[index + 0] = 255 - r;
+            img.pixels[index + 1] = 255 - g;
+            img.pixels[index + 2] = 255 - b;
+
+          }
+        }
+        // We're finished working with pixels so update them
+        img.updatePixels();
+    }
     endShape(), tint(255, 180), translate(ww / 2, hh / 2), rotate(angoff), imageMode(CENTER), image(img, 0, 0, 1.5 * ww, 1.5 * hh);
 }
 function draw() {
+
     noStroke();
+    // Load the pixels
+    
     let n = color(191, 185, 185);
     fill(n), rect(0, 0, 12, hh), rect(0, 0, ww, 12), rect(0, hh - 12, ww, hh), rect(ww - 12, 0, ww, hh);
 }
