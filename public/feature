@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head></head>
+<style type="text/css">
+	tr {
+		line-height: 1.5;
+	}
+</style>
+<body>
+	<div style="border-bottom: solid 1px;">the spring begins with the first rainstorm 
+features
+</div>
+<table style="border: solid 1x;">
+	<tr>
+		<td>1.</td>
+		<td>Color Palette Variety</td>
+	</tr>
+	<tr><td></td><td>a.	1 Color – ‘arcana’</td></tr>
+	<tr><td></td><td>b.	2 colors – ‘elysium’</td></tr>
+	<tr><td></td><td>c.	3 colors – ‘arcadia’</td></tr>
+	<tr><td></td><td>d.	4 colors – ‘atlantis’</td></tr>
+	<tr><td></td><td>e.	5+ colors – ‘babylon’</td></tr>
+	<tr>
+		<td>2.</td>
+		<td>Wind Coverage (White ribboning) </td>
+	</tr>
+	<tr><td></td><td>a.	0-10% of canvas– ‘free to rove and revel’</td></tr>
+	<tr><td></td><td>b.	10-20% of canvas – ‘with a strong birr of wing-beats’</td></tr>
+	<tr><td></td><td>c.	20-50% of canvas – ‘their boughs whorled like lily leaves’</td></tr>
+	<tr><td></td><td>d.	50%+ of canvas – ‘at the foot of declivities’</td></tr>
+	<tr>
+		<td>3.</td>
+		<td>Pattern (Bitmap selection)</td>
+	</tr>
+	<tr><td></td><td>a.	Bitmap 1 – ‘to live is the rarest thing in the world’</td></tr>
+	<tr><td></td><td>b.	Bitmap 2 – ‘ever and anon gazing’</td></tr>
+	<tr><td></td><td>c.	Bitmap 3 – ‘not their sky vortex’</td></tr>
+	<tr><td></td><td>d.	Bitmap 4 – ‘of the high pastured’</td></tr>
+	<tr><td></td><td>e.	Bitmap 5 – ‘a boisterous stream in a boulder choked channel’</td></tr>
+	<tr>
+		<td>4.</td>
+		<td>Rotation</td>
+	</tr>
+	<tr><td></td><td>a.	0-90 degrees – ‘north’</td></tr>
+	<tr><td></td><td>b.	90-180 degrees – ‘east’</td></tr>
+	<tr><td></td><td>c.	180-270 degrees – ‘south’</td></tr>
+	<tr><td></td><td>d.	270-0 degrees – ‘west’</td></tr>
+	<tr>
+		<td>5.</td>
+		<td>Inversion</td>
+	</tr>
+	<tr><td></td><td>a.	Yes – ‘hibernal’</td></tr>
+	<tr><td></td><td>b.	No – ‘maelstrom’</td></tr>
+</table>
+</body></html>
