@@ -390,7 +390,6 @@ function calculateFeatures(hashData) {
     }
     groupArray.push(groups)
   }
-  console.log(groupArray);
   data["Palette"] = "";
 
   
